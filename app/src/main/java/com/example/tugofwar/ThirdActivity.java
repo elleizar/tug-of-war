@@ -95,8 +95,8 @@ public class ThirdActivity extends AppCompatActivity {
             {
                 RelativeLayout.LayoutParams par = (RelativeLayout.LayoutParams)
                 i.getLayoutParams();
-                par.leftMargin -= 20;
-                if (par.leftMargin <= 5){
+                par.leftMargin -= 60;
+                if (par.leftMargin <= 25){
                     message.setText(getString(R.string.mess_go, bp1.getText()));
                     sp1 += 1;
                     score_mess.setText(getString(R.string.mess_score, sp1, sp2));
@@ -123,8 +123,8 @@ public class ThirdActivity extends AppCompatActivity {
             {
                 RelativeLayout.LayoutParams par = (RelativeLayout.LayoutParams)
                 i.getLayoutParams();
-                par.leftMargin += 20;
-                if (par.leftMargin >= 1005){
+                par.leftMargin += 60;
+                if (par.leftMargin >= 985){
                     message.setText(getString(R.string.mess_go, bp2.getText()));
                     sp2 += 1;
                     score_mess.setText(getString(R.string.mess_score, sp1, sp2));

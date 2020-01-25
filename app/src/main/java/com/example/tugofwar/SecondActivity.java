@@ -10,9 +10,9 @@ import android.widget.EditText;
 
 public class SecondActivity extends AppCompatActivity {
 
-    Button enter_button;
-    EditText p1;
-    EditText p2;
+    public Button enter_button;
+    public EditText p1;
+    public EditText p2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
