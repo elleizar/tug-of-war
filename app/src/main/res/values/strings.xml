@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tug of War!</string>
+    <string name="start">START</string>
+    <string name="a_2_player_game">a 2 player game</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="Enter">Enter</string>
+    <string name="enames">Enter names here</string>
+    <string name="p1">Player 1</string>
+    <string name="p2">Player 2</string>
+
+
+</resources>
