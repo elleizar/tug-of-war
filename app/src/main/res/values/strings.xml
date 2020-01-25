@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">Tug of War!</string>
     <string name="start">START</string>
-    <string name="a_2_player_game">a 2 player game</string>
+    <string name="again">AGAIN</string>
+    <string name="change">CHANGE PLAYERS</string>
+    <string name="a_2_player_game">a 2 player game\n\nwinner is whoever has Android on their side</string>
     <string name="title_activity_second">SecondActivity</string>
     <string name="Enter">Enter</string>
     <string name="enames">Enter names here</string>
     <string name="p1">Player 1</string>
     <string name="p2">Player 2</string>
     <string name="ball">ball</string>
+    <string name="mess_go">GAME OVER\n\n%1$s won!</string>
+    <string name="mess_tie">It\'s a tie!</string>
+    <string name="mess_win">%1$s is winning!</string>
+    <string name="mess_score">%1$d     :     %2$d</string>
 
 
 </resources>
