@@ -7,6 +7,7 @@
     <string name="enames">Enter names here</string>
     <string name="p1">Player 1</string>
     <string name="p2">Player 2</string>
+    <string name="ball">ball</string>
 
 
 </resources>
