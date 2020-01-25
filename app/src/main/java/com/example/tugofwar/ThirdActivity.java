@@ -12,17 +12,17 @@ import android.widget.TextView;
 
 public class ThirdActivity extends AppCompatActivity {
 
-    Button bp1;
-    Button bp2;
-    String st1;
-    String st2;
-    ImageView i;
-    TextView message;
-    TextView score_mess;
-    Button s_button;
-    Button c_button;
-    Integer sp1;
-    Integer sp2;
+    public Button bp1;
+    public Button bp2;
+    public String st1;
+    public String st2;
+    public ImageView i;
+    public TextView message;
+    public TextView score_mess;
+    public Button s_button;
+    public Button c_button;
+    public Integer sp1;
+    public Integer sp2;
 
 
     @Override
