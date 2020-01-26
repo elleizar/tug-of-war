@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +24,9 @@ public class ThirdActivity extends AppCompatActivity {
     public Button c_button;
     public Integer sp1;
     public Integer sp2;
+    public TextView timer;
+    public CountDownTimer cTimer;
+    public String winner;
 
 
     @Override
@@ -37,6 +41,7 @@ public class ThirdActivity extends AppCompatActivity {
         score_mess = (TextView) findViewById(R.id.score);
         s_button = (Button) findViewById(R.id.s_button);
         c_button = (Button) findViewById(R.id.c_button);
+        timer = (TextView) findViewById(R.id.timer);
 
         bp1.setEnabled(false);
         bp2.setEnabled(false);
@@ -55,6 +60,12 @@ public class ThirdActivity extends AppCompatActivity {
 
         sp1 = 0;
         sp2 = 0;
+        winner = "";
+
+        timer.setVisibility(View.INVISIBLE);
+        timer.setText(getString(R.string.timer,0));
+
+        cTimer = null;
 
         RelativeLayout.LayoutParams par = (RelativeLayout.LayoutParams)
                 i.getLayoutParams();
@@ -73,6 +84,8 @@ public class ThirdActivity extends AppCompatActivity {
                         i.getLayoutParams();
                 par.leftMargin = 505;
                 par.rightMargin= 0;
+                timer.setVisibility(View.VISIBLE);
+                startTimer();
             }
         });
 
@@ -89,15 +102,54 @@ public class ThirdActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    void startTimer() {
+        cTimer = new CountDownTimer(10000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                timer.setText(getString(R.string.timer, millisUntilFinished/1000));
+            }
+            public void onFinish() {
+                RelativeLayout.LayoutParams par = (RelativeLayout.LayoutParams)
+                        i.getLayoutParams();
+                message.setText(getString(R.string.mess_go, winner));
+
+                if (par.leftMargin == 505){
+                    message.setText(getString(R.string.mess_tie));
+                    score_mess.setText(getString(R.string.mess_score, sp1, sp2));
+                }
+                else {
+                    if (winner.equals(bp1.getText().toString())){
+                        sp1 += 1;
+                    }
+                    else{
+                        sp2 += 1;
+                    }
+                    score_mess.setText(getString(R.string.mess_score, sp1, sp2));
+                }
+                bp1.setEnabled(false);
+                bp2.setEnabled(false);
+                s_button.setText(getString(R.string.again));
+                s_button.setVisibility(View.VISIBLE);
+                c_button.setVisibility(View.VISIBLE);
+                timer.setText(getString(R.string.to));
+            }
+        }.start();
+    }
+
+    void cancelTimer() {
+        if(cTimer!=null)
+            cTimer.cancel();
+    }
+
     public void onClick(View v){
         switch(v.getId()){
             case R.id.bp1:
             {
                 RelativeLayout.LayoutParams par = (RelativeLayout.LayoutParams)
-                i.getLayoutParams();
+                        i.getLayoutParams();
                 par.leftMargin -= 60;
                 if (par.leftMargin <= 25){
-                    message.setText(getString(R.string.mess_go, bp1.getText()));
+                    winner = bp1.getText().toString();
+                    message.setText(getString(R.string.mess_go, winner));
                     sp1 += 1;
                     score_mess.setText(getString(R.string.mess_score, sp1, sp2));
                     bp1.setEnabled(false);
@@ -105,6 +157,7 @@ public class ThirdActivity extends AppCompatActivity {
                     s_button.setText(getString(R.string.again));
                     s_button.setVisibility(v.VISIBLE);
                     c_button.setVisibility(v.VISIBLE);
+                    cancelTimer();
                 }
                 else if (par.leftMargin < 505) {
                     message.setText(getString(R.string.mess_win, bp1.getText()));
@@ -113,7 +166,8 @@ public class ThirdActivity extends AppCompatActivity {
                     message.setText(getString(R.string.mess_tie));
                 }
                 else {
-                    message.setText(getString(R.string.mess_win, bp2.getText()));
+                    winner = bp2.getText().toString();
+                    message.setText(getString(R.string.mess_win, winner));
                 }
 
 
@@ -122,10 +176,11 @@ public class ThirdActivity extends AppCompatActivity {
             case R.id.bp2:
             {
                 RelativeLayout.LayoutParams par = (RelativeLayout.LayoutParams)
-                i.getLayoutParams();
+                        i.getLayoutParams();
                 par.leftMargin += 60;
                 if (par.leftMargin >= 985){
-                    message.setText(getString(R.string.mess_go, bp2.getText()));
+                    winner = bp2.getText().toString();
+                    message.setText(getString(R.string.mess_go, winner));
                     sp2 += 1;
                     score_mess.setText(getString(R.string.mess_score, sp1, sp2));
                     bp1.setEnabled(false);
@@ -133,20 +188,22 @@ public class ThirdActivity extends AppCompatActivity {
                     s_button.setText("AGAIN");
                     s_button.setVisibility(v.VISIBLE);
                     c_button.setVisibility(v.VISIBLE);
+                    cancelTimer();
                 }
                 else if (par.leftMargin > 505) {
-                    message.setText(getString(R.string.mess_win, bp2.getText()));
+                    winner = bp2.getText().toString();
+                    message.setText(getString(R.string.mess_win, winner));
                 }
                 else if (par.leftMargin == 505){
                     message.setText(getString(R.string.mess_tie));
                 }
                 else {
-                    message.setText(getString(R.string.mess_win, bp1.getText()));
+                    winner =  bp1.getText().toString();
+                    message.setText(getString(R.string.mess_win, winner));
                 }
 
                 break;
             }
-
         }
     }
 
