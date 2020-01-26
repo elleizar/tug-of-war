@@ -85,7 +85,7 @@ public class ThirdActivity extends AppCompatActivity {
     }
 
     public void goToSecondActivity(){
-        Intent intent = new Intent(this, ThirdActivity.class);
+        Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
 
